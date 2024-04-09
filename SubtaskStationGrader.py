@@ -24,7 +24,7 @@ def SubtaskStationGrader(currentSubtaskName):
     options = []
 
     for i in range(currentSubtaskNumberOfZones):
-        options.append('Zone ' + str(i + 1))
+        options.append(str(i + 1))
 
     # Create the main window
     root = tk.Tk()
@@ -46,3 +46,5 @@ def SubtaskStationGrader(currentSubtaskName):
 
     # Run the GUI
     root.mainloop()
+
+SubtaskStationGrader('SubtaskA')
