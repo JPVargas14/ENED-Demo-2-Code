@@ -49,5 +49,16 @@ def main():
         # Output the results to the CSV file
         CsvWriter.InputGradesToCsv(currentGradeList, currentTeamNumber, directory, gradingFilename, subtaskStationName)
 
+        gradeAgainStatus = "blank"
+        while gradeAgainStatus != "Y" and gradeAgainStatus != "N":
+            print("\nWould you like to grade the same station again?")
+            gradeAgainStatus = input("Y for Yes or N for No ")
+
+        if gradeAgainStatus == "Y":
+            isGradingHappening = True
+            isTeamNumberCorrect = "N"
+
+        elif gradeAgainStatus == "N":
+            isGradingHappening = False
 
 main()

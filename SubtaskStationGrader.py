@@ -13,7 +13,7 @@ def RunSubtaskStationGrader(currentSubtaskName, selected_options):
         for i, option_var in enumerate(option_vars):
             if option_var.get():
                 selected_options.append(options[i])
-        print("Selected options:", selected_options)
+        #print("Selected options:", selected_options)
         root.destroy()  # Close the window`
 
     subtaskInfo = SubtaskGenerator.GetSubtaskInfo()
