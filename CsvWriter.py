@@ -1,18 +1,16 @@
 import csv
 import os
+import SubtaskGenerator
 
-def create_csv_with_username(directory_path):
+def create_csv_with_username(directory_path, username):
     # Ensure the directory exists
     os.makedirs(directory_path, exist_ok=True)
-    
-    # Ask the user to input their username
-    username = input("Please enter your username: ")
 
     # Construct file name
-    filename = username + "_DemoGradingFile"
+    filename = username + "_DemoGradingFile.csv"
     
     # Construct the full path to the CSV file
-    csv_file_path = os.path.join(directory_path, f"{filename}.csv")
+    csv_file_path = os.path.join(directory_path, filename)
     
     # Check if the file already exists
     file_exists = os.path.isfile(csv_file_path)
@@ -23,32 +21,32 @@ def create_csv_with_username(directory_path):
         
         # If the file doesn't exist, write a header row
         if not file_exists:
-            writer.writerow(["Team Number", "Subtask A Zones", "Subtask B Zones", "Subtask C Zones", "Full Track Zones", 
-                             "Subtask A Retry Zones", "Subtask B Retry Zones", "Subtask C Retry Zones"])  # Adjust headers as needed
-            print(f"CSV file '{filename}.csv' created successfully.")
+            writer.writerow(SubtaskGenerator.GetSubtaskGradingColumns())  # Adjust headers as needed
+            print(f"CSV file '{filename}' created successfully.")
         else:
-            print(f"CSV file '{filename}.csv' already exists.")
+            print(f"CSV file '{filename}' already exists.")
 
-def write_list_to_csv(input_list, directory_path, file_name):
+    return filename
+
+def InputGradesToCsv(inputList, teamNumber, directoryPath, fileName, subtaskName):
     # Ensure the directory exists
-    os.makedirs(directory_path, exist_ok=True)
+    os.makedirs(directoryPath, exist_ok=True)
     
     # Construct the full path to the CSV file
-    csv_file_path = os.path.join(directory_path, file_name)
-    
-    # Determine whether the file already exists
-    file_exists = os.path.isfile(csv_file_path)
-    
-    # Open the CSV file in append mode
-    with open(csv_file_path, mode='a', newline='') as file:
-        writer = csv.writer(file)
-        
-        # If the file doesn't exist, write the list with header
-        if not file_exists:
-            writer.writerow(["Column1", "Column2"])  # Adjust headers as needed
-            writer.writerow(input_list)
-        else:
-            writer.writerow(input_list)
+    csv_file_path = os.path.join(directoryPath, fileName)
+
+    inputList2 = []
+    inputList2 = inputList
+
+    subtaskGradingColumns = SubtaskGenerator.GetSubtaskGradingColumns()
+    with open(csv_file_path, 'a') as gradingFile: 
+        writer = csv.DictWriter(gradingFile, fieldnames=subtaskGradingColumns)
+
+        inputColumnName = subtaskName + " Zones"
+        outputString = ', '.join(inputList2)
+
+        writer.writerow({'Team Number':teamNumber, inputColumnName:outputString})
+
 
 # Example usage:
 my_list = ["Value1", "Value2"]  # Example list to be written to CSV
@@ -59,4 +57,4 @@ filename = "vargasjp_FinalDemoGrading.csv"  # Name of the CSV file
 #write_list_to_csv(my_list, directory, filename)
 
 # Call the function to create a CSV file with the username as filename
-create_csv_with_username(directory)
+# create_csv_with_username(directory)
