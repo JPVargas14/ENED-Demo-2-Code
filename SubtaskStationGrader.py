@@ -7,10 +7,9 @@
 import tkinter as tk
 import SubtaskGenerator
 
-def SubtaskStationGrader(currentSubtaskName):
+def RunSubtaskStationGrader(currentSubtaskName, selected_options):
 
     def submit():
-        selected_options = []
         for i, option_var in enumerate(option_vars):
             if option_var.get():
                 selected_options.append(options[i])
@@ -47,4 +46,4 @@ def SubtaskStationGrader(currentSubtaskName):
     # Run the GUI
     root.mainloop()
 
-SubtaskStationGrader('SubtaskA')
+# RunSubtaskStationGrader('Subtask A')
