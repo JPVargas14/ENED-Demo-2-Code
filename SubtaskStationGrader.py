@@ -7,14 +7,13 @@
 import tkinter as tk
 import SubtaskGenerator
 
-def SubtaskStationGrader(currentSubtaskName):
+def RunSubtaskStationGrader(currentSubtaskName, selected_options):
 
     def submit():
-        selected_options = []
         for i, option_var in enumerate(option_vars):
             if option_var.get():
                 selected_options.append(options[i])
-        print("Selected options:", selected_options)
+        #print("Selected options:", selected_options)
         root.destroy()  # Close the window`
 
     subtaskInfo = SubtaskGenerator.GetSubtaskInfo()
@@ -24,7 +23,7 @@ def SubtaskStationGrader(currentSubtaskName):
     options = []
 
     for i in range(currentSubtaskNumberOfZones):
-        options.append('Zone ' + str(i + 1))
+        options.append(str(i + 1))
 
     # Create the main window
     root = tk.Tk()
@@ -46,3 +45,5 @@ def SubtaskStationGrader(currentSubtaskName):
 
     # Run the GUI
     root.mainloop()
+
+# RunSubtaskStationGrader('Subtask A')
