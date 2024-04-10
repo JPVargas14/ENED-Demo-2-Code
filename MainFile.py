@@ -45,7 +45,7 @@ def main():
         # Run the Subtask Station Grader for the current team
         firstTryGradeList = []
         retryGradeList = []
-        SubtaskStationGrader.RunSubtaskStationGrader(subtaskStationName, firstTryGradeList, retryGradeList)
+        SubtaskStationGrader.RunSubtaskStationGrader(subtaskStationName, firstTryGradeList, retryGradeList, currentTeamNumber)
 
         # Output the results to the CSV file
         CsvWriter.InputGradesToCsv(firstTryGradeList, retryGradeList, currentTeamNumber, directory, gradingFilename, subtaskStationName)
