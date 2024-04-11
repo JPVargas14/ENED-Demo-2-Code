@@ -16,10 +16,12 @@ def event_queue():
     # Function to handle popping the next team from the queue
     def pop_next_team():
         if team_queue:
-            team_number = team_queue.popleft()
-            next_in_line_label.config(text=f"Next In Line: {team_number}")
-            ready_to_go_label.config(text=f"Ready to Go to Station: {team_number}")
-            # Update the display window
+            # Pop the next team from the front of the queue
+            next_team = team_queue.popleft()
+            # Set the popped team as "Next In Line" and "Ready to Go to Station"
+            next_in_line_label.config(text=f"Next In Line: {next_team}")
+            ready_to_go_label.config(text=f"Ready to Go to Station: {next_team}")
+            # Update the display window to reflect the removal of the team from the queue
             update_display_window()
 
     # Function to edit a team number in the queue
@@ -37,14 +39,16 @@ def event_queue():
     # Function to update the display window with the current queue
     def update_display_window():
         # Display the teams in line
-        in_line_label.config(text=f"In Line: {', '.join(team_queue)}")
-
+        if len(team_queue) > 0:
+            in_line_label.config(text=f"In Line: {', '.join(team_queue)}")
+        else:
+            in_line_label.config(text="In Line: None")
+        
         # Update the 'Next In Line' and 'Ready to Go to Station' labels
         if len(team_queue) > 0:
             next_in_line_label.config(text=f"Next In Line: {team_queue[0]}")
         else:
             next_in_line_label.config(text="Next In Line: None")
-            ready_to_go_label.config(text="Ready to Go to Station: None")
 
     # Create the input window
     input_root = tk.Tk()
@@ -71,7 +75,7 @@ def event_queue():
     display_root.title("Display Window")
 
     # Labels to visualize the queue
-    in_line_label = tk.Label(display_root, text="In Line: ", font=("Arial", 16))
+    in_line_label = tk.Label(display_root, text="In Line: None", font=("Arial", 16))
     in_line_label.grid(row=0, column=0, padx=10, pady=10)
 
     next_in_line_label = tk.Label(display_root, text="Next In Line: None", font=("Arial", 16))
@@ -85,4 +89,3 @@ def event_queue():
 
 # Call the function to run the program
 event_queue()
-     
