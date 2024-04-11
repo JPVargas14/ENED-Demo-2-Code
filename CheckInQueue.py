@@ -43,7 +43,7 @@ def event_queue():
             in_line_label.config(text=f"In Line: {', '.join(team_queue)}")
         else:
             in_line_label.config(text="In Line: None")
-        
+
         # Update the 'Next In Line' and 'Ready to Go to Station' labels
         if len(team_queue) > 0:
             next_in_line_label.config(text=f"Next In Line: {team_queue[0]}")
