@@ -67,6 +67,6 @@ def RunSubtaskStationGrader(currentSubtaskName, selected_options_first_try, sele
     root.mainloop()
 
 
-emptyList1 = []
-emptyList2 = []
-RunSubtaskStationGrader('Subtask A', emptyList1, emptyList2, 342)
+# emptyList1 = []
+# emptyList2 = []
+# RunSubtaskStationGrader('Subtask A', emptyList1, emptyList2, 342)
