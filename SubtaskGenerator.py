@@ -3,7 +3,7 @@
 # of each subtask in a demo. This includes the final track.
 
 def GetSubtaskInfo():
-    subtaskInfo = {'Subtask A': 6,'Subtask B': 4, 'Subtask C': 9, 'Final Track': 11 }
+    subtaskInfo = {'Subtask A': 6,'Subtask B': 3, 'Subtask C': 9, 'Final Track': 10 }
 
     return subtaskInfo
 

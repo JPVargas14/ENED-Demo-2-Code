@@ -63,12 +63,8 @@ def event_queue():
     add_button.grid(row=0, column=1, padx=10, pady=10)
 
     # Pop next team button
-    pop_button = tk.Button(input_root, text="Pop Next Team", command=pop_next_team)
+    pop_button = tk.Button(input_root, text="Move Next Team", command=pop_next_team)
     pop_button.grid(row=1, column=0, padx=10, pady=10)
-
-    # Edit team button
-    edit_button = tk.Button(input_root, text="Edit Team", command=edit_team)
-    edit_button.grid(row=1, column=1, padx=10, pady=10)
 
     # Create the display window
     display_root = tk.Toplevel(input_root)
