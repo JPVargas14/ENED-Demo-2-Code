@@ -28,25 +28,28 @@ def create_csv_with_username(directory_path, username):
 
     return filename
 
-def InputGradesToCsv(inputList, teamNumber, directoryPath, fileName, subtaskName):
+def InputGradesToCsv(firstTryGradeList, retryGradeList, teamNumber, directoryPath, fileName, subtaskName):
     # Ensure the directory exists
     os.makedirs(directoryPath, exist_ok=True)
     
     # Construct the full path to the CSV file
     csv_file_path = os.path.join(directoryPath, fileName)
 
-    inputList2 = []
-    inputList2 = inputList
-
     subtaskGradingColumns = SubtaskGenerator.GetSubtaskGradingColumns()
     with open(csv_file_path, 'a') as gradingFile: 
         writer = csv.DictWriter(gradingFile, fieldnames=subtaskGradingColumns)
 
-        inputColumnName = subtaskName + " Zones"
-        outputString = ', '.join(inputList2)
+        firstTryColumnName = subtaskName + " Zones"
+        firstTryOutputString = ', '.join(firstTryGradeList)
 
-        writer.writerow({'Team Number':teamNumber, inputColumnName:outputString})
+        # If there is a grade for the retries
+        if len(retryGradeList ) != 0:
+            retryColumnName = subtaskName + " Retry Zones"
+            retryOutputString = ', '.join(retryGradeList)
 
+            writer.writerow({'Team Number':teamNumber, firstTryColumnName:firstTryOutputString, retryColumnName:retryOutputString})
+        else:
+            writer.writerow({'Team Number':teamNumber, firstTryColumnName:firstTryOutputString})
 
 # Example usage:
 my_list = ["Value1", "Value2"]  # Example list to be written to CSV

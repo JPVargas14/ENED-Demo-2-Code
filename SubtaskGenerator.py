@@ -8,6 +8,6 @@ def GetSubtaskInfo():
     return subtaskInfo
 
 def GetSubtaskGradingColumns():
-    subtaskGradingColumns = ["Team Number", "Subtask A Zones", "Subtask B Zones", "Subtask C Zones", "Full Track Zones", 
-                             "Subtask A Retry Zones", "Subtask B Retry Zones", "Subtask C Retry Zones"]
+    subtaskGradingColumns = ["Team Number", "Subtask A Zones", "Subtask A Retry Zones", "Subtask B Zones", "Subtask B Retry Zones", 
+                             "Subtask C Zones", "Subtask C Retry Zones", "Full Track Zones", " Full Track Retry Zones"]
     return subtaskGradingColumns

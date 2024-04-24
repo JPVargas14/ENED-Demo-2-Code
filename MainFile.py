@@ -43,11 +43,12 @@ def main():
             isTeamNumberCorrect = input("Y for Yes or N for No ")
 
         # Run the Subtask Station Grader for the current team
-        currentGradeList = []
-        SubtaskStationGrader.RunSubtaskStationGrader(subtaskStationName, currentGradeList)
+        firstTryGradeList = []
+        retryGradeList = []
+        SubtaskStationGrader.RunSubtaskStationGrader(subtaskStationName, firstTryGradeList, retryGradeList, currentTeamNumber)
 
         # Output the results to the CSV file
-        CsvWriter.InputGradesToCsv(currentGradeList, currentTeamNumber, directory, gradingFilename, subtaskStationName)
+        CsvWriter.InputGradesToCsv(firstTryGradeList, retryGradeList, currentTeamNumber, directory, gradingFilename, subtaskStationName)
 
         gradeAgainStatus = "blank"
         while gradeAgainStatus != "Y" and gradeAgainStatus != "N":

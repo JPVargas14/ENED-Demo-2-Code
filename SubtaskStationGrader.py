@@ -7,14 +7,16 @@
 import tkinter as tk
 import SubtaskGenerator
 
-def RunSubtaskStationGrader(currentSubtaskName, selected_options):
+def RunSubtaskStationGrader(currentSubtaskName, selected_options_first_try, selected_options_retry, teamNumber):
 
     def submit():
-        for i, option_var in enumerate(option_vars):
-            if option_var.get():
-                selected_options.append(options[i])
-        #print("Selected options:", selected_options)
-        root.destroy()  # Close the window`
+        for i, var in enumerate(var_first_try):
+            if var.get():
+                selected_options_first_try.append(str(i + 1))
+        for i, var in enumerate(var_retry):
+            if var.get():
+                selected_options_retry.append(str(i + 1))
+        root.destroy()  # Close the window
 
     subtaskInfo = SubtaskGenerator.GetSubtaskInfo()
     currentSubtaskNumberOfZones = subtaskInfo[currentSubtaskName]
@@ -27,23 +29,44 @@ def RunSubtaskStationGrader(currentSubtaskName, selected_options):
 
     # Create the main window
     root = tk.Tk()
-    root.title("Initial Task Score")
+    root.title(currentSubtaskName + " Score: Team " + str(teamNumber))
+    root.geometry("730x500")  # Set the size of the window
 
-    # Variables to store the checkbox states
-    option_vars = []
+    # Labels for titles
+    tk.Label(root, text=(currentSubtaskName + " Score: Team " + str(teamNumber)), font=("Arial", 30), anchor="center").grid(row=0, columnspan=6, sticky="nsew")
+    tk.Label(root, text="First Try Zones", font=("Arial", 24), anchor="center").grid(row=2, columnspan=6, sticky="nsew")
+    tk.Label(root, text="Retry Zones", font=("Arial", 24), anchor="center").grid(row=6, columnspan=6, sticky="nsew")
 
-    # Create checkboxes
-    for option in options:
-        var = tk.BooleanVar()
-        option_vars.append(var)
-        checkbox = tk.Checkbutton(root, text=option, variable=var)
-        checkbox.pack(anchor='w')
+    # Empty labels for whitespace
+    tk.Label(root, text="", font=("Arial", 20)).grid(row=1, columnspan=6)
+    tk.Label(root, text="", font=("Arial", 20)).grid(row=3, columnspan=6)
+    tk.Label(root, text="", font=("Arial", 20)).grid(row=5, columnspan=6)
+    tk.Label(root, text="", font=("Arial", 20)).grid(row=7, columnspan=6)
+    tk.Label(root, text="", font=("Arial", 20)).grid(row=9, columnspan=6)
+
+
+    # Variables to store checkbox states
+    var_first_try = [tk.BooleanVar() for _ in range(6)]
+    var_retry = [tk.BooleanVar() for _ in range(6)]
+
+    # Create checkboxes for first try
+    for i, var in enumerate(var_first_try):
+        checkbox = tk.Checkbutton(root, text="Zone " + str(i+1), font=("Arial", 20), variable=var, anchor="center",)
+        checkbox.grid(row=4, column=i, sticky="nsew")
+
+    # Create checkboxes for retry   
+    for i, var in enumerate(var_retry):
+        checkbox = tk.Checkbutton(root, text="Zone " + str(i+1), font=("Arial", 20), variable=var, anchor="center")
+        checkbox.grid(row=8, column=i, sticky="nsew")
 
     # Submit button
-    submit_button = tk.Button(root, text="Submit", command=submit)
-    submit_button.pack()
+    submit_button = tk.Button(root, text="Submit", font=("Arial", 14), command=submit, anchor="center")
+    submit_button.grid(row=10, column=2, columnspan=2, sticky="nsew")
 
     # Run the GUI
     root.mainloop()
 
-# RunSubtaskStationGrader('Subtask A')
+
+# emptyList1 = []
+# emptyList2 = []
+# RunSubtaskStationGrader('Subtask A', emptyList1, emptyList2, 342)
