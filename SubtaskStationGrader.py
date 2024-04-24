@@ -30,24 +30,23 @@ def RunSubtaskStationGrader(currentSubtaskName, selected_options_first_try, sele
     # Create the main window
     root = tk.Tk()
     root.title(currentSubtaskName + " Score: Team " + str(teamNumber))
-    root.geometry("730x500")  # Set the size of the window
 
     # Labels for titles
-    tk.Label(root, text=(currentSubtaskName + " Score: Team " + str(teamNumber)), font=("Arial", 30), anchor="center").grid(row=0, columnspan=6, sticky="nsew")
-    tk.Label(root, text="First Try Zones", font=("Arial", 24), anchor="center").grid(row=2, columnspan=6, sticky="nsew")
-    tk.Label(root, text="Retry Zones", font=("Arial", 24), anchor="center").grid(row=6, columnspan=6, sticky="nsew")
+    tk.Label(root, text=(currentSubtaskName + " Score: Team " + str(teamNumber)), font=("Arial", 30), anchor="center").grid(row=0, columnspan=currentSubtaskNumberOfZones, sticky="nsew")
+    tk.Label(root, text="First Try Zones", font=("Arial", 24), anchor="center").grid(row=2, columnspan=currentSubtaskNumberOfZones, sticky="nsew")
+    tk.Label(root, text="Retry Zones", font=("Arial", 24), anchor="center").grid(row=6, columnspan=currentSubtaskNumberOfZones, sticky="nsew")
 
     # Empty labels for whitespace
-    tk.Label(root, text="", font=("Arial", 20)).grid(row=1, columnspan=6)
-    tk.Label(root, text="", font=("Arial", 20)).grid(row=3, columnspan=6)
-    tk.Label(root, text="", font=("Arial", 20)).grid(row=5, columnspan=6)
-    tk.Label(root, text="", font=("Arial", 20)).grid(row=7, columnspan=6)
-    tk.Label(root, text="", font=("Arial", 20)).grid(row=9, columnspan=6)
+    tk.Label(root, text="", font=("Arial", 20)).grid(row=1, columnspan=currentSubtaskNumberOfZones)
+    tk.Label(root, text="", font=("Arial", 20)).grid(row=3, columnspan=currentSubtaskNumberOfZones)
+    tk.Label(root, text="", font=("Arial", 20)).grid(row=5, columnspan=currentSubtaskNumberOfZones)
+    tk.Label(root, text="", font=("Arial", 20)).grid(row=7, columnspan=currentSubtaskNumberOfZones)
+    tk.Label(root, text="", font=("Arial", 20)).grid(row=9, columnspan=currentSubtaskNumberOfZones)
 
 
     # Variables to store checkbox states
-    var_first_try = [tk.BooleanVar() for _ in range(6)]
-    var_retry = [tk.BooleanVar() for _ in range(6)]
+    var_first_try = [tk.BooleanVar() for _ in range(currentSubtaskNumberOfZones)]
+    var_retry = [tk.BooleanVar() for _ in range(currentSubtaskNumberOfZones)]
 
     # Create checkboxes for first try
     for i, var in enumerate(var_first_try):
@@ -69,4 +68,4 @@ def RunSubtaskStationGrader(currentSubtaskName, selected_options_first_try, sele
 
 # emptyList1 = []
 # emptyList2 = []
-# RunSubtaskStationGrader('Subtask A', emptyList1, emptyList2, 342)
+# RunSubtaskStationGrader('Final Track', emptyList1, emptyList2, 342)
